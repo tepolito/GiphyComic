@@ -11,7 +11,8 @@ import {
   searchGiphs,
   selectGiph,
   save,
-  edit
+  edit,
+  setWidth
 } from '../../modules/counter';
 
 function Editing(props) {
@@ -21,25 +22,26 @@ function Editing(props) {
   {
     return (
       <div>
-      <button onClick={props.save}>Save</button>
-      <Search searchGiphs={props.searchGiphs} />
+        <button onClick={props.save, props.setWidth(props.width)}>Save</button>
+        <input type='text' name='enterWidth' placeholder='enter width' value={props.width}/>
+        <Search searchGiphs={props.searchGiphs} />
 
-      {props.giphs.map(g => {
-        console.log(g);
-        return (
-          <div className="giphContainer" onClick={() => props.selectGiph(g.embed_url)}>
-            <iframe
-              src={g.embed_url}
-              width="180"
-              height="160"
-              frameBorder="0"
-              class="giphy-embed"
-              allowFullScreen
-              style={{pointerEvents:'none'}}
-            />
-        </div>
-        );
-      })};
+        {props.giphs.map(g => {
+          console.log(g);
+          return (
+            <div className="giphContainer" onClick={() => props.selectGiph(g.embed_url)}>
+              <iframe
+                src={g.embed_url}
+                width="180"
+                height="160"
+                frameBorder="0"
+                class="giphy-embed"
+                allowFullScreen
+                style={{pointerEvents:'none'}}
+              />
+          </div>
+          );
+        })};
     </div>
   )
   }
@@ -85,16 +87,17 @@ const Home = props => (
         </button>
       </p> */}
 
-      {props.giph}
-      <iframe
-        src={props.giph}
-        width="480"
-        height="460"
-        frameBorder="0"
-        className="giphy-embed"
-        allowFullScreen
-        style={{pointerEvents:'none'}}
-        />
+      <div className="cellGiph">
+        <iframe
+          src={props.giph}
+          width="480"
+          height="460"
+          frameBorder="0"
+          className="giphy-embed"
+          allowFullScreen
+          style={{pointerEvents:'none'}}
+          />
+      </div>
 
       <div className="textBubble" contentEditable={props.editing}>
         {props.text}
@@ -129,6 +132,7 @@ const mapDispatchToProps = dispatch =>
       selectGiph,
       save,
       edit,
+      setWidth,
       changePage: () => push('/about-us')
     },
     dispatch

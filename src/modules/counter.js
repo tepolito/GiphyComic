@@ -12,7 +12,8 @@ const initialState = {
   giphs: [],
   giph: '',
   editing: true,
-  text: 'enter text for giph'
+  text: 'enter text for giph',
+  width: 0
 };
 
 export default (state = initialState, action) => {
@@ -89,6 +90,15 @@ export const selectGiph = giph =>
   {
     console.log(giph);
     dispatch({type: "SELECT", payload: giph});
+  }
+}
+
+export const setWidth = width =>
+{
+  return dispatch =>
+  {
+    console.log(width);
+  //  dispatch({type: "SELECT", payload: giph});
   }
 }
 
