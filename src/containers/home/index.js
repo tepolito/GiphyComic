@@ -6,10 +6,6 @@ import Search from './search.js';
 import Cards from './cards';
 import Editing from './editing';
 import {
-  /*increment,
-  incrementAsync,
-  decrement,
-  decrementAsync,*/
   searchGiphs,
   selectGiph,
   save,
@@ -48,10 +44,8 @@ const Home = props => (
   </div>
 );
 
-const mapStateToProps = state => ({
-/*  count: state.counter.count,
-  isIncrementing: state.counter.isIncrementing,
-  isDecrementing: state.counter.isDecrementing,*/
+const mapStateToProps = state => (
+  {
   giphs: state.counter.giphs,
   giph: state.counter.giph,
   editing: state.counter.editing,
@@ -63,10 +57,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      /*increment,
-      incrementAsync,
-      decrement,
-      decrementAsync,*/
       searchGiphs,
       selectGiph,
       save,

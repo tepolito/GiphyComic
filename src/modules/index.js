@@ -7,6 +7,7 @@ export default combineReducers({
   counter
 });
 
+//gets rid of content editable error
 console.error = (function() {
   var error = console.error
 
