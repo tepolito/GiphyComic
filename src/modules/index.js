@@ -6,3 +6,13 @@ export default combineReducers({
   router: routerReducer,
   counter
 });
+
+console.error = (function() {
+  var error = console.error
+
+  return function(exception) {
+    if ((exception + '').indexOf('Warning: A component is `contentEditable`') != 0) {
+      error.apply(console, arguments)
+    }
+  }
+})()

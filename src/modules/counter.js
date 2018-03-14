@@ -13,36 +13,12 @@ const initialState = {
   giph: '',
   editing: true,
   text: 'enter text for giph',
-  width: 0
+  width: 120,
+  cards: []
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-  /*  case INCREMENT_REQUESTED:
-      return {
-        ...state,
-        isIncrementing: true
-      };
-
-    case INCREMENT:
-      return {
-        ...state,
-        count: state.count + 1,
-        isIncrementing: !state.isIncrementing
-      };
-
-    case DECREMENT_REQUESTED:
-      return {
-        ...state,
-        isDecrementing: true
-      };
-
-    case DECREMENT:
-      return {
-        ...state,
-        count: state.count - 1,
-        isDecrementing: !state.isDecrementing
-      };*/
 
     case 'GIPH':
       return {
@@ -57,9 +33,11 @@ export default (state = initialState, action) => {
       };
 
     case 'SAVE':
+    console.log(state,action)
         return {
           ...state,
-          editing: false
+          editing: false,
+          cards: [...state.cards, {giph:state.giph, text:state.text}]
         };
 
     case 'EDIT':
@@ -67,6 +45,13 @@ export default (state = initialState, action) => {
           ...state,
           editing: true
         };
+
+    case 'WIDTH':
+    console.log(action);
+        return{
+          ...state,
+          width: action.payload
+        }
 
     default:
       return state;
@@ -97,8 +82,8 @@ export const setWidth = width =>
 {
   return dispatch =>
   {
-    console.log(width);
-  //  dispatch({type: "SELECT", payload: giph});
+    console.log("the width is" + width);
+    dispatch({type: "WIDTH", payload: width});
   }
 }
 

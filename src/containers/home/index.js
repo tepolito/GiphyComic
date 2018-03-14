@@ -3,6 +3,8 @@ import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Search from './search.js';
+import Cards from './cards';
+import Editing from './editing';
 import {
   /*increment,
   incrementAsync,
@@ -15,79 +17,13 @@ import {
   setWidth
 } from '../../modules/counter';
 
-function Editing(props) {
-//  console.log(props)
-  const isEditing = props.editing;
-  if (isEditing)
-  {
-    return (
-      <div>
-        <button onClick={props.save, props.setWidth(props.width)}>Save</button>
-        <input type='text' name='enterWidth' placeholder='enter width' value={props.width}/>
-        <Search searchGiphs={props.searchGiphs} />
-
-        {props.giphs.map(g => {
-          console.log(g);
-          return (
-            <div className="giphContainer" onClick={() => props.selectGiph(g.embed_url)}>
-              <iframe
-                src={g.embed_url}
-                width="180"
-                height="160"
-                frameBorder="0"
-                class="giphy-embed"
-                allowFullScreen
-                style={{pointerEvents:'none'}}
-              />
-          </div>
-          );
-        })};
-    </div>
-  )
-  }
-  return <button onClick={props.edit}>Edit</button>;
-}
-
 const Home = props => (
   <div>
     <h1>Home</h1>
-  {/*  <p>Count: {props.count}</p>
 
+      <Cards {...props}/>;
 
-
-    <p>
-      <button onClick={props.increment} disabled={props.isIncrementing}>
-        Increment
-      </button>
-      <button onClick={props.incrementAsync} disabled={props.isIncrementing}>
-        Increment Async
-      </button>
-    </p>
-
-    <p>
-      <button onClick={props.decrement} disabled={props.isDecrementing}>
-        Decrement
-      </button>
-      <button onClick={props.decrementAsync} disabled={props.isDecrementing}>
-        Decrement Async
-      </button>
-
-      <input type="text" placeholder="search" />
-
-      <button
-        onClick={() => {
-          props.searchGiphs('rick and morty');
-        }}>
-        search giphs
-      </button>
-
-      <p>
-        <button onClick={() => props.changePage()}>
-          Go to about page via redux
-        </button>
-      </p> */}
-
-      <div className="cellGiph">
+    {/*  <div className="cellGiph">
         <iframe
           src={props.giph}
           width="480"
@@ -101,7 +37,8 @@ const Home = props => (
 
       <div className="textBubble" contentEditable={props.editing}>
         {props.text}
-      </div>
+      </div> */}
+
       <Editing {...props}/>
 
 
@@ -118,7 +55,9 @@ const mapStateToProps = state => ({
   giphs: state.counter.giphs,
   giph: state.counter.giph,
   editing: state.counter.editing,
-  text: state.counter.text
+  text: state.counter.text,
+  width: state.counter.width,
+  cards: state.counter.cards
 });
 
 const mapDispatchToProps = dispatch =>
