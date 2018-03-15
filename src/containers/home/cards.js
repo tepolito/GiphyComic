@@ -10,9 +10,10 @@ export default function Cards(props) {
     return (
       <div>
       {props.cards.map((g, i) => {
-        console.log(g);
+        console.log(i);
         return (
           <div key={i}>
+          {g.id}
             <p>{g.text}</p>
             <div className="giphContainer">
               <iframe
@@ -25,7 +26,7 @@ export default function Cards(props) {
                 style={{pointerEvents:'none'}}
               />
             </div>
-            <Editing {...props}/>
+            <Editing {...props} identifyer={i}/>
         </div>
         );
       })};

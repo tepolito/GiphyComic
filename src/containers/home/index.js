@@ -15,7 +15,7 @@ import {
 
 const Home = props => (
   <div>
-    <h1>Home</h1>
+    <h1>Home</h1> {props.giph} id {props.id}
 
       <Cards {...props}/>;
 
@@ -51,7 +51,8 @@ const mapStateToProps = state => (
   editing: state.counter.editing,
   text: state.counter.text,
   width: state.counter.width,
-  cards: state.counter.cards
+  cards: state.counter.cards,
+  id: state.counter.id
 });
 
 const mapDispatchToProps = dispatch =>

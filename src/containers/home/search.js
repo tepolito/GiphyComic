@@ -59,7 +59,7 @@ export default class Example extends React.Component {
     time = setTimeout(function() {
       console.log(nv);
       sg(nv);
-    }, 2000);
+    }, 250);
 
     this.setState({
       value: newValue
