@@ -31,5 +31,5 @@ export default function Editing(props) {
     </div>
   )
   }
-  return <button onClick={props.edit}>Edit</button>;
+  return <button onClick={props.edit}>{props.butName}</button>;
 }

@@ -35,7 +35,7 @@ const Home = props => (
         {props.text}
       </div> */}
 
-      <Editing {...props}/>
+      <Editing {...props} butName='New Cell'/>
 
 
 

@@ -26,7 +26,7 @@ export default function Cards(props) {
                 style={{pointerEvents:'none'}}
               />
             </div>
-            <Editing {...props} identifyer={i}/>
+            <Editing {...props} identifyer={i} butName='Edit'/>
         </div>
         );
       })};
