@@ -10,7 +10,7 @@ export default function Editing(props) {
     return (
       <div>
         <button onClick={()=>props.save(props.identifyer)}>Save</button>
-        <Search searchGiphs={props.searchGiphs} />
+      {/*  <Search searchGiphs={props.searchGiphs} /> */}
         {props.giphs.map((g, i) => {
       //    console.log(g);
           return (
@@ -28,6 +28,7 @@ export default function Editing(props) {
           </div>
           );
         })};
+
     </div>
   )
   }

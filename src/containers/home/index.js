@@ -9,15 +9,17 @@ import {
   searchGiphs,
   selectGiph,
   save,
-  edit,
-  setWidth
+  edit
 } from '../../modules/counter';
 
 const Home = props => (
   <div>
     <h1>Home</h1> {props.giph} id {props.id}
 
+      <Search searchGiphs={props.searchGiphs} />
+
       <Cards {...props}/>;
+
 
     {/*  <div className="cellGiph">
         <iframe
@@ -37,10 +39,6 @@ const Home = props => (
 
       <Editing {...props} butName='New Cell'/>
 
-
-
-
-
   </div>
 );
 
@@ -50,7 +48,6 @@ const mapStateToProps = state => (
   giph: state.counter.giph,
   editing: state.counter.editing,
   text: state.counter.text,
-  width: state.counter.width,
   cards: state.counter.cards,
   id: state.counter.id
 });
@@ -62,7 +59,6 @@ const mapDispatchToProps = dispatch =>
       selectGiph,
       save,
       edit,
-      setWidth,
       changePage: () => push('/about-us')
     },
     dispatch

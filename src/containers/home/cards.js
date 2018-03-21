@@ -7,29 +7,36 @@ import Editing from './editing';
 export default function Cards(props) {
   console.log(props);
 
+
+
     return (
-      <div>
+      <article class="comic">
       {props.cards.map((g, i) => {
-        console.log(i);
+        console.log(g);
+          let num = (Math.floor(Math.random() * 6) + 1) * 100
         return (
-          <div key={i}>
+          <div key={i} className='panel' style={{flexBasis: num}}>
           {g.id}
-            <p>{g.text}</p>
-            <div className="giphContainer">
+
+            <div className="container">
               <iframe
                 src={g.giph}
-                width="180"
-                height="160"
+
                 frameBorder="0"
                 className="giphy-embed"
                 allowFullScreen
                 style={{pointerEvents:'none'}}
               />
             </div>
+
+            <div className="textBubble" contentEditable={props.editing}>
+              {g.text}
+            </div>
+
             <Editing {...props} identifyer={i} butName='Edit'/>
         </div>
         );
       })};
-      </div>
+    </article>
     );
 };

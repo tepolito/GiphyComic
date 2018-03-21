@@ -5,7 +5,6 @@ const initialState = {
   giph: '',
   editing: true,
   text: 'enter text for giph',
-  width: 120,
   cards: [],
   id: 0
 };
@@ -40,23 +39,17 @@ export default (state = initialState, action) => {
     }
         return {
           ...state,
-          editing: false,
+          editing:false,
           cards: newCards
           // cards: [...state.cards, {giph:state.giph, id:state.id, text:state.text}]
         };
 
     case 'EDIT':
+    console.log(action, state, this)
         return {
           ...state,
-          editing: true
+          editing:true
         };
-
-    case 'WIDTH':
-    console.log(action);
-        return{
-          ...state,
-          width: action.payload
-        }
 
     default:
       return state;
@@ -80,15 +73,6 @@ export const selectGiph = (giph, i) =>
   {
     console.log(giph, i);
     dispatch({type: "SELECT", payload: giph.embed_url, id: i});
-  }
-}
-
-export const setWidth = width =>
-{
-  return dispatch =>
-  {
-    console.log("the width is" + width);
-    dispatch({type: "WIDTH", payload: width});
   }
 }
 
