@@ -29,7 +29,7 @@ export default function Cards(props) {
               />
             </div>
 
-            <div className="textBubble" contentEditable={props.editing}>
+            <div className="text bottom-right" contentEditable={props.editing}>
               {g.text}
             </div>
 
