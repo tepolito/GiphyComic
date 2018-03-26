@@ -9,7 +9,9 @@ import {
   searchGiphs,
   selectGiph,
   save,
-  edit
+  edit,
+  selectCard,
+  handleChange
 } from '../../modules/counter';
 
 const Home = props => (
@@ -17,27 +19,12 @@ const Home = props => (
     <h1>Home</h1> {props.giph} id {props.id}
 
       <Search searchGiphs={props.searchGiphs} />
+{props.editingCard}
+      <Editing {...props} butName={ (props.editingCard === null) ? 'New Cell' : 'edit' }/>
 
       <Cards {...props}/>;
 
 
-    {/*  <div className="cellGiph">
-        <iframe
-          src={props.giph}
-          width="480"
-          height="460"
-          frameBorder="0"
-          className="giphy-embed"
-          allowFullScreen
-          style={{pointerEvents:'none'}}
-          />
-      </div>
-
-      <div className="textBubble" contentEditable={props.editing}>
-        {props.text}
-      </div> */}
-
-      <Editing {...props} butName='New Cell'/>
 
   </div>
 );
@@ -49,7 +36,9 @@ const mapStateToProps = state => (
   editing: state.counter.editing,
   text: state.counter.text,
   cards: state.counter.cards,
-  id: state.counter.id
+  id: state.counter.id,
+  editingCard: state.counter.editingCard,
+  editingText: state.counter.editingText
 });
 
 const mapDispatchToProps = dispatch =>
@@ -59,6 +48,8 @@ const mapDispatchToProps = dispatch =>
       selectGiph,
       save,
       edit,
+      selectCard,
+      handleChange,
       changePage: () => push('/about-us')
     },
     dispatch

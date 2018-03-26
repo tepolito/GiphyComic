@@ -15,7 +15,7 @@ export default function Cards(props) {
         console.log(g);
           let num = (Math.floor(Math.random() * 6) + 1) * 100
         return (
-          <div key={i} className='panel' style={{flexBasis: num}}>
+          <div onClick={()=>props.selectCard(i)} key={i} className='panel' style={{flexBasis: num}}>
           {g.id}
 
             <div className="container">
@@ -33,7 +33,7 @@ export default function Cards(props) {
               {g.text}
             </div>
 
-            <Editing {...props} identifyer={i} butName='Edit'/>
+            {/*<Editing {...props} identifyer={i} butName='Edit'/> */}
         </div>
         );
       })};

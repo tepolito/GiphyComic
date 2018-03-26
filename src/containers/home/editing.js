@@ -9,7 +9,12 @@ export default function Editing(props) {
   {
     return (
       <div>
-        <button onClick={()=>props.save(props.identifyer)}>Save</button>
+        <button onClick={()=>props.save(props.editingCard, props.editingText)}>Save</button>
+        <br/>
+          <label>
+            Giph Text:
+            <input type="text" value={props.editingText} onChange={props.handleChange} />
+          </label>
       {/*  <Search searchGiphs={props.searchGiphs} /> */}
         {props.giphs.map((g, i) => {
       //    console.log(g);
@@ -32,5 +37,5 @@ export default function Editing(props) {
     </div>
   )
   }
-  return <button onClick={props.edit}>{props.butName}</button>;
+  return <button onClick={()=>props.edit(props.editingCard)}>{props.butName}</button>;
 }

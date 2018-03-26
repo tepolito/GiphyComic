@@ -6,7 +6,8 @@ const initialState = {
   editing: true,
   text: 'enter text for giph',
   cards: [],
-  id: 0
+  id: 0,
+  editingCard: null
 };
 
 export default (state = initialState, action) => {
@@ -26,16 +27,16 @@ export default (state = initialState, action) => {
       };
 
     case 'SAVE':
-    console.log(action.id)
+    console.log(action, state)
     let newCards = state.cards;
 
     if(newCards[action.id])
     {
-      newCards[action.id] = {giph:state.giph, id:state.id, text:state.text}
+      newCards[action.id] = {giph:state.giph, id:state.id, text:action.text}
     }
     else
     {
-      newCards.push({giph:state.giph, id:state.id, text:state.text})
+      newCards.push({giph:state.giph, id:state.id, text:action.text})
     }
         return {
           ...state,
@@ -45,11 +46,24 @@ export default (state = initialState, action) => {
         };
 
     case 'EDIT':
-    console.log(action, state, this)
+
         return {
           ...state,
-          editing:true
+          editing: true
         };
+
+    case 'SELECT_CARD':
+    console.log(action, state, this);
+        return{
+          ...state,
+          editingCard: action.id === state.editingCard ? null : action.id
+        };
+
+    case 'HANDLE_CHANGE':
+        return{
+          ...state,
+          editingText: action.value
+        }
 
     default:
       return state;
@@ -76,21 +90,39 @@ export const selectGiph = (giph, i) =>
   }
 }
 
-export const save = (id) =>
+export const save = (id, text) =>
 {
-  console.log(id)
+  console.log("saving id " + id)
   return dispatch =>
   {
     console.log('saving');
-    dispatch({type:'SAVE', id: id})
+    dispatch({type:'SAVE', id: id, text: text})
   }
 }
 
-export const edit = () =>
+export const edit = (id) =>
 {
+  console.log('edit id' + id)
   return dispatch =>
   {
-    console.log('editing');
-    dispatch({type:'EDIT'})
+    console.log('editing id' + id);
+    dispatch({type:'EDIT', id: id})
+  }
+}
+
+export const selectCard = (id) =>
+{
+  console.log('selectCard id ' + id);
+  return dispatch =>
+  {
+    dispatch({type: 'SELECT_CARD', id: id});
+  }
+}
+
+export const handleChange = (event) =>
+{
+    return dispatch =>
+    {
+      dispatch({type: "HANDLE_CHANGE", value: event.target.value});
   }
 }
