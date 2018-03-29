@@ -4,10 +4,12 @@ const initialState = {
   giphs: [],
   giph: '',
   editing: true,
-  text: 'enter text for giph',
+  textBox: 'enter text for giph',
   cards: [],
   id: 0,
-  editingCard: null
+  editingCard: null,
+  slider: 200,
+  textSelect: 'text top-left'
 };
 
 export default (state = initialState, action) => {
@@ -32,11 +34,13 @@ export default (state = initialState, action) => {
 
     if(newCards[action.id])
     {
-      newCards[action.id] = {giph:state.giph, id:state.id, text:action.text}
+      newCards[action.id] = {giph:state.giph, id:state.id, textBox:state.textBox, slider:state.slider,
+        textSelect: state.textSelect}
     }
     else
     {
-      newCards.push({giph:state.giph, id:state.id, text:action.text})
+      newCards.push({giph:state.giph, id:state.id, textBox:state.textBox, slider:state.slider,
+      textSelect: state.textSelect})
     }
         return {
           ...state,
@@ -60,10 +64,12 @@ export default (state = initialState, action) => {
         };
 
     case 'HANDLE_CHANGE':
-        return{
-          ...state,
-          editingText: action.value
-        }
+    delete action.type;
+
+    let thing = Object.assign(state,action);
+    console.log(thing);
+        return {...thing};
+
 
     default:
       return state;
@@ -90,13 +96,13 @@ export const selectGiph = (giph, i) =>
   }
 }
 
-export const save = (id, text) =>
+export const save = (id, textBox, slider, textSelect) =>
 {
   console.log("saving id " + id)
   return dispatch =>
   {
-    console.log('saving');
-    dispatch({type:'SAVE', id: id, text: text})
+    console.log(textBox);
+    dispatch({type:'SAVE', id: id, textBox: textBox, slider:slider, textSelect: textSelect})
   }
 }
 
@@ -121,8 +127,13 @@ export const selectCard = (id) =>
 
 export const handleChange = (event) =>
 {
+  let obj = {type: 'HANDLE_CHANGE'}
+
+  obj[event.target.id] = event.target.value;
+  console.log(event.target.id);
     return dispatch =>
     {
-      dispatch({type: "HANDLE_CHANGE", value: event.target.value});
+      console.log(event.target);
+      dispatch(obj);
   }
 }

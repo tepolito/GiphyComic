@@ -22,7 +22,7 @@ const Home = props => (
 {props.editingCard}
       <Editing {...props} butName={ (props.editingCard === null) ? 'New Cell' : 'edit' }/>
 
-      <Cards {...props}/>;
+      <Cards {...props}/>
 
 
 
@@ -34,11 +34,12 @@ const mapStateToProps = state => (
   giphs: state.counter.giphs,
   giph: state.counter.giph,
   editing: state.counter.editing,
-  text: state.counter.text,
   cards: state.counter.cards,
   id: state.counter.id,
   editingCard: state.counter.editingCard,
-  editingText: state.counter.editingText
+  textBox: state.counter.textBox,
+  slider: state.counter.slider,
+  textSelect: state.counter.textSelect
 });
 
 const mapDispatchToProps = dispatch =>

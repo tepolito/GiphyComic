@@ -10,13 +10,13 @@ export default function Cards(props) {
 
 
     return (
-      <article class="comic">
+      <article className="comic">
       {props.cards.map((g, i) => {
         console.log(g);
           let num = (Math.floor(Math.random() * 6) + 1) * 100
         return (
-          <div onClick={()=>props.selectCard(i)} key={i} className='panel' style={{flexBasis: num}}>
-          {g.id}
+          <div onClick={()=>props.selectCard(i)} key={i} className='panel' style={{flexBasis: Number(g.slider)}}>
+          {g.id} slider value{g.slider}
 
             <div className="container">
               <iframe
@@ -29,14 +29,14 @@ export default function Cards(props) {
               />
             </div>
 
-            <div className="text bottom-right" contentEditable={props.editing}>
-              {g.text}
+            <div className={g.textSelect} contentEditable={props.editing}>
+              {g.textBox}
             </div>
 
             {/*<Editing {...props} identifyer={i} butName='Edit'/> */}
         </div>
-        );
-      })};
+        )
+      })}
     </article>
     );
 };
